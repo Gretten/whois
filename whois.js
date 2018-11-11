@@ -3,11 +3,10 @@ const parser = require('parse-whois');
 const fs = require('fs');
 
 let arrayOfLinks = [
-    'jsfiddle.net',
-    'youtube.com'
+    'javascript.ru'
 ];
 
-function whoisParser(arr) {
+function whoisParser(arr, file) {
   for (key of arr) {
     whois.lookup(key, (err, data) => {
       if (err) {
@@ -16,13 +15,11 @@ function whoisParser(arr) {
       let parsed = parser.parseWhoIsData(data);
       for (key of parsed) {
         if (key.value) {
-            fs.appendFileSync('file.txt', `\r\n${key.value}`)
+            fs.appendFileSync(file, `\r\n${key.value}`)
         }
       }
     });
   }
 }
 
-whoisParser(arrayOfLinks);
-
-// node whois.js
+whoisParser(arrayOfLinks, 'data.txt');
