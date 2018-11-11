@@ -3,12 +3,8 @@ const parser = require('parse-whois');
 const fs = require('fs');
 
 let arrayOfLinks = [
-    'tutknow.ru',
-    'overview-sales.ru',
-    'tovary-obzor.ru',
-    'proguarchibaofatcaps.ru',
-    '24tsena.ru',
-    'mail.ru'
+    'jsfiddle.net',
+    'youtube.com'
 ];
 
 function whoisParser(arr) {
