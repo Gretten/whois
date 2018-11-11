@@ -1,34 +1,32 @@
 const whois = require('whois');
 const parser = require('parse-whois');
+const fs = require('fs');
 
-// Выходящий массив ссылок, в дальнейшем может быть строка
 let arrayOfLinks = [
-    'google.com',
-    'yandex.ru'
+    'tutknow.ru',
+    'overview-sales.ru',
+    'tovary-obzor.ru',
+    'proguarchibaofatcaps.ru',
+    '24tsena.ru',
+    'mail.ru'
 ];
 
-// Обрабатывает пропарсенный массив - ищет value и выводит в консоль. 
-const dataHandler = (err, data) => {
-    if (err) {
+function whoisParser(arr) {
+  for (key of arr) {
+    whois.lookup(key, (err, data) => {
+      if (err) {
         console.log(err);
-    } else {
-        let parsedData = parser.parseWhoIsData(data);
-        console.log(
-            parsedData.map(item => {
-                return item.value;
-            })
-        );
-    };
-};
-
-// Делит массив ссылок на отдельные элементы и применяет к ним функцию dataHandler
-const mulDomains = inputArray => {
-    return inputArray.map(item => {
-        return whois.lookup(item, dataHandler)
+      }
+      let parsed = parser.parseWhoIsData(data);
+      for (key of parsed) {
+        if (key.value) {
+            fs.appendFileSync('file.txt', `\r\n${key.value}`)
+        }
+      }
     });
-};
+  }
+}
 
-mulDomains(arrayOfLinks);
-
+whoisParser(arrayOfLinks);
 
 // node whois.js
