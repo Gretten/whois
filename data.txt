@@ -1,0 +1,24 @@
+
+% By submitting a query to RIPN's Whois Service
+% you agree to abide by the following terms of use:
+% http://www.ripn.net/about/servpol.html#3.2 (in Russian)
+% http://www.ripn.net/about/en/servpol.html#3.2 (in English).
+No entries found for the selected source(s).
+Last updated on 2018-11-11T21:01:36Z
+
+JAVASCRIPT.RU
+damon.ns.cloudflare.com.
+ines.ns.cloudflare.com.
+REGISTERED, DELEGATED, VERIFIED
+Private Person
+REGTIME-RU
+https://whois.webnames.ru
+2000-05-03T14:55:50Z
+2019-05-31T21:00:00Z
+2019-07-02
+TCI
+% By submitting a query to RIPN's Whois Service
+% you agree to abide by the following terms of use:
+% http://www.ripn.net/about/servpol.html#3.2 (in Russian)
+% http://www.ripn.net/about/en/servpol.html#3.2 (in English).
+Last updated on 2018-11-11T21:01:36Z
