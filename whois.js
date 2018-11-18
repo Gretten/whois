@@ -1,10 +1,23 @@
 const whois = require('whois');
 const parser = require('parse-whois');
+const bodyParser = require('body-parser');
+const express = require("express");
 const fs = require('fs');
 
-let arrayOfLinks = [
-    'javascript.ru'
-];
+const app = express();
+const urlencodedParser = bodyParser.urlencoded({extended:false});
+
+app.use(express.static(__dirname + '/form'));
+
+app.post('/input', urlencodedParser, (req, res) => {
+  if(!req.body) return res.sendStatus(400);
+  console.log(req.body);
+});
+
+
+app.listen(3000);
+
+let arrayOfLinks = [];
 
 function whoisParser(arr, file) {
   for (key of arr) {
