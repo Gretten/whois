@@ -6,14 +6,17 @@ const fs = require('fs');
 
 const app = express();
 const urlencodedParser = bodyParser.urlencoded({extended:false});
+const domainRegExp = /(?<=\/\/)[\w]+?\.[\w.]+/;
 
 app.use(express.static(__dirname + '/form'));
 
+let formResult = '';
+
 app.post('/input', urlencodedParser, (req, res) => {
   if(!req.body) return res.sendStatus(400);
-  console.log(req.body);
+  formResult = req.body.text;
+  console.log(formResult);
 });
-
 
 app.listen(3000);
 
