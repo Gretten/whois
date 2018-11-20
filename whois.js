@@ -8,20 +8,6 @@ const app = express();
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 const domainRegExp = /(?<=\/\/)[\w]+?\.[\w.]+/;
 
-app.use(express.static(__dirname + '/form'));
-
-let formResult = '';
-
-app.post('/input', urlencodedParser, (req, res) => {
-  if(!req.body) return res.sendStatus(400);
-  formResult = req.body.text;
-  console.log(formResult);
-});
-
-app.listen(3000);
-
-let arrayOfLinks = [];
-
 function whoisParser(arr, file) {
   for (key of arr) {
     whois.lookup(key, (err, data) => {
@@ -38,4 +24,19 @@ function whoisParser(arr, file) {
   }
 }
 
-whoisParser(arrayOfLinks, 'data.txt');
+function getArrayOfLinks(req, res) {
+    if(!req.body) return res.sendStatus(400);
+    if(!req.body.text) { 
+      console.log('nothing to find');
+      return;
+    };
+    let formResult = req.body.text.split('\r\n');
+    let parsed = formResult.map(function(item) {
+      return item.match(domainRegExp)[0];
+    });
+    whoisParser(parsed, 'data.txt')
+};
+
+app.use(express.static(__dirname + '/form'));
+app.post('/input', urlencodedParser, getArrayOfLinks);
+app.listen(3000);
